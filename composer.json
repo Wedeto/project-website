@@ -1,0 +1,6 @@
+{
+    "require": {
+        "wedeto/application": "@dev"
+    },
+    "minimum-stability": "dev"
+}
