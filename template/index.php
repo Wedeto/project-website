@@ -1,5 +1,6 @@
 <?php
 $this->setTitle('WeDeTo - The Web Development Toolkit');
+$this->addCSS('wedeto');
 include tpl('parts/header.php');
 ?>
         <div class="large-2 medium-2 small-1 columns">
@@ -16,7 +17,7 @@ include tpl('parts/header.php');
                 Wedeto is built around <a href="https://getcomposer.org/">Composer</a> and is therefore easy to install.
                 Just run the following commands:
 
-                <pre class="small-12 text-left">
+                <pre class="callout">
                 composer require wedeto/application
                 php vendor/bin/setup.php
                 </pre>
@@ -27,7 +28,7 @@ include tpl('parts/header.php');
                 during development, the built-in PHP webserver may be useful.
                 To try it out, just run:
 
-                <pre class="small-8">
+                <pre class="callout">
                 php -S localhost:8000 http/index.php
                 </pre>
 
@@ -44,7 +45,7 @@ include tpl('parts/header.php');
             </p>
             <p>
                 Go ahead and create a controller:
-                <pre>
+                <pre class="callout">
                     mkdir app
                     echo "&lt;?php $tpl->setTemplate('test')->render();" &gt; app/test.php
                 </pre>
@@ -54,7 +55,7 @@ include tpl('parts/header.php');
                 After initial setup, Wedeto uses a development mode that shows you some background information. In this case, the template file is missing.
                 That's right, we didn't create it yet. Let's do that now:
 
-                <pre>
+                <pre class="callout">
                     mkdir template
                     gedit template/test.php
                 </pre>
@@ -104,7 +105,7 @@ include tpl('parts/footer.php');
                 to prepare and execute queries. However, for most uses, the <abbr title="Data Access Object">DAO</abbr> class will be useful to
                 save you from writing the queries:
 
-                <pre>
+                <pre class="callout">
                     class User extends Wedeto\DB\DAO
                     {
                         protected static $table = "users";
@@ -118,7 +119,7 @@ include tpl('parts/footer.php');
             <p>
                 If things get more complex, you can also use the Query classes to generate database agnostic queries:
 
-                <pre>
+                <pre class="callout">
                     use Wedeto\DB\Query\Builder as QB;
 
                     $select = QB::select(
