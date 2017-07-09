@@ -2,6 +2,7 @@ config/*.ini
 var/*
 .*.swp
 composer.lock
-vendor/
+/vendor/
 cc/
 http/assets
+/update.sh
