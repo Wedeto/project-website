@@ -1,5 +1,5 @@
 $(function () {
-    $('pre').addClass('prettyprint callout');
-    $('code').addClass('prettyprint');
-    PR.prettyPrint();
+    $('pre').addClass('callout');
+
+    hljs.initHighlightingOnLoad();
 });

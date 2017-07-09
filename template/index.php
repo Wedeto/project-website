@@ -1,13 +1,14 @@
 <?php
 $this->setTitle('WeDeTo - The Web Development Toolkit');
 include tpl('parts/header.php');
+$this->addJS('vendor/highlight.js/highlight');
+$this->addCSS('vendor/highlight.js/railscasts');
 $this->addCSS('wedeto');
 $this->addJS('wedeto');
-$this->addJS('vendor/google-code-prettify/prettify');
-$this->addCSS('vendor/google-code-prettify/prettify');
 ?>
         <div class="large-2 medium-2 small-1 columns">
             <img src="<?=URL('assets/img/touch-icon-180.png');?>" style="width 100%;" />
+            <img src="<?=URL('assets/img/wedeto-logo.png');?>" style="width 100%;" />
         </div>
         <div class="large-10 medium-10 small-11 columns callout">
             <h1>Welcome</h1/>
@@ -20,10 +21,8 @@ $this->addCSS('vendor/google-code-prettify/prettify');
                 Wedeto is built around <a href="https://getcomposer.org/">Composer</a> and is therefore easy to install.
                 Just run the following commands:
 
-                <pre>
-composer require wedeto/application
-php vendor/bin/setup.php
-                </pre>
+                <pre><code>composer require wedeto/application
+php vendor/bin/setup.php</code></pre>
 
                 This will install and setup Wedeto, while asking you some questions, and optionally configuring a database connection.
                 Afterwards, you will end up with a http directory that should be served by your webserver.
@@ -31,9 +30,7 @@ php vendor/bin/setup.php
                 during development, the built-in PHP webserver may be useful.
                 To try it out, just run:
 
-                <pre>
-php -S localhost:8000 http/index.php
-                </pre>
+                <pre><code>php -S localhost:8000 http/index.php</code></pre>
 
                 Now, point your browser to <a href="http://localhost:8000/">http://localhost:8000/</a> and you will be greeted by Wedeto.
             </p>
@@ -48,25 +45,20 @@ php -S localhost:8000 http/index.php
             </p>
             <p>
                 Go ahead and create a controller:
-                <pre>
-mkdir app
-echo "&lt;?php $tpl->setTemplate('test')->render();" &gt; app/test.php
-                </pre>
+                <pre><code>mkdir app
+echo "&lt;?php $tpl->setTemplate('test')->render();" &gt; app/test.php</code></pre>
 
                 This very simple tiny controller does nothing else but define a route called test, and have that show the template called test.
                 You can visit it: <a href="http://localhost:8000/test">http://localhost:8000/test</a>. Oops, an internal server error.
                 After initial setup, Wedeto uses a development mode that shows you some background information. In this case, the template file is missing.
                 That's right, we didn't create it yet. Let's do that now:
 
-                <pre>
-mkdir template
-gedit template/test.php
-                </pre>
+                <pre><code>mkdir template
+gedit template/test.php</code></pre>
 
                 You can of course substitute your favorite editor for 'gedit'. Put in the following contents:
 
-                <pre>
-&lt;?php
+                <pre><code>&lt;?php
 $this-&gt;setTitle('WeDeTo - The Web Development Toolkit');
 include tpl('parts/header.php');
 ?&gt;
@@ -77,8 +69,7 @@ include tpl('parts/header.php');
             &lt;p&gt;
         &lt;/div&gt;
 &lt;?
-include tpl('parts/footer.php');
-                </pre>
+include tpl('parts/footer.php');</code></pre>
 
                 Reload your page. You should now see the rendered template! As you can see, Wedeto uses PHP for its templates, rather
                 than a templating engine. PHP is a templating engine itself, so why add another layer? Instead, Wedeto
@@ -108,23 +99,20 @@ include tpl('parts/footer.php');
                 to prepare and execute queries. However, for most uses, the <abbr title="Data Access Object">DAO</abbr> class will be useful to
                 save you from writing the queries:
 
-                <pre>
-&lt;?php
+                <pre><code>&lt;?php
 class User extends Wedeto\DB\DAO
 {
     protected static $table = "users";
 }
 
-$my_user = User::get(['id' => 13]);
-                </pre>
+$my_user = User::get(['id' => 13]);</code></pre>
 
                 Easy, right? Just tell Wedeto what the name of your table is, and Wedeto will find out what your table looks like and generate the queries.
             </p>
             <p>
                 If things get more complex, you can also use the Query classes to generate database agnostic queries:
 
-                <pre>
-&lt;?php
+                <pre><code>&lt;?php
 use Wedeto\DB\Query\Builder as QB;
 
 $select = QB::select(
@@ -137,8 +125,7 @@ $select = QB::select(
 foreach ($select->execute($db) as $user)
 {
     // Do whatever you want
-}
-                </pre>
+}</code></pre>
                 
                 The loop will loop over the retrieved users,
                 <code>$select->execute</code> will return a 
@@ -148,17 +135,15 @@ foreach ($select->execute($db) as $user)
             <p>
                 A common scenario in a template is that you want to list all objects, and show a message when there is none.
                 This structure is sometimes referred to as foreach-else. Wedeto implements this in a function fee:
-            </p>
-            <pre>
-&lt;?php
+                <pre><code>&lt;?php
 use Wedeto\Util\Functions as WF;
 
 WF::fee($users, function ($user) {
     // Do something with the users
 }, function () {
     // Do something when there are no users
-});
-            </pre>
+});</code></pre>
+            </p>
             <h3>That's it!</h3>
             <p>
                 That's the basics of using Wedeto. Of course, there's a lot more to it. Wedeto includes
