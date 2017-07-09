@@ -109,6 +109,7 @@ include tpl('parts/footer.php');
                 save you from writing the queries:
 
                 <pre>
+&lt;?php
 class User extends Wedeto\DB\DAO
 {
     protected static $table = "users";
@@ -123,6 +124,7 @@ $my_user = User::get(['id' => 13]);
                 If things get more complex, you can also use the Query classes to generate database agnostic queries:
 
                 <pre>
+&lt;?php
 use Wedeto\DB\Query\Builder as QB;
 
 $select = QB::select(
@@ -142,11 +144,21 @@ foreach ($select->execute($db) as $user)
                 <code>$select->execute</code> will return a 
                 <a href="http://php.net/manual/en/class.pdostatement.php">PDOStatement</a>
                 that has been prepared and executed. You just need to fetch the results.
+            </p>
             <p>
                 A common scenario in a template is that you want to list all objects, and show a message when there is none.
-                This structure is sometimes 
+                This structure is sometimes referred to as foreach-else. Wedeto implements this in a function fee:
             </p>
-            </p>
+            <pre>
+&lt;?php
+use Wedeto\Util\Functions as WF;
+
+WF::fee($users, function ($user) {
+    // Do something with the users
+}, function () {
+    // Do something when there are no users
+});
+            </pre>
             <h3>That's it!</h3>
             <p>
                 That's the basics of using Wedeto. Of course, there's a lot more to it. Wedeto includes
