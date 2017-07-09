@@ -1,7 +1,10 @@
 <?php
 $this->setTitle('WeDeTo - The Web Development Toolkit');
-$this->addCSS('wedeto');
 include tpl('parts/header.php');
+$this->addCSS('wedeto');
+$this->addJS('wedeto');
+$this->addJS('vendor/google-code-prettify/prettify');
+$this->addCSS('vendor/google-code-prettify/prettify');
 ?>
         <div class="large-2 medium-2 small-1 columns">
             <img src="<?=URL('assets/img/touch-icon-180.png');?>" style="width 100%;" />
@@ -17,9 +20,9 @@ include tpl('parts/header.php');
                 Wedeto is built around <a href="https://getcomposer.org/">Composer</a> and is therefore easy to install.
                 Just run the following commands:
 
-                <pre class="callout">
-                composer require wedeto/application
-                php vendor/bin/setup.php
+                <pre>
+composer require wedeto/application
+php vendor/bin/setup.php
                 </pre>
 
                 This will install and setup Wedeto, while asking you some questions, and optionally configuring a database connection.
@@ -28,8 +31,8 @@ include tpl('parts/header.php');
                 during development, the built-in PHP webserver may be useful.
                 To try it out, just run:
 
-                <pre class="callout">
-                php -S localhost:8000 http/index.php
+                <pre>
+php -S localhost:8000 http/index.php
                 </pre>
 
                 Now, point your browser to <a href="http://localhost:8000/">http://localhost:8000/</a> and you will be greeted by Wedeto.
@@ -45,9 +48,9 @@ include tpl('parts/header.php');
             </p>
             <p>
                 Go ahead and create a controller:
-                <pre class="callout">
-                    mkdir app
-                    echo "&lt;?php $tpl->setTemplate('test')->render();" &gt; app/test.php
+                <pre>
+mkdir app
+echo "&lt;?php $tpl->setTemplate('test')->render();" &gt; app/test.php
                 </pre>
 
                 This very simple tiny controller does nothing else but define a route called test, and have that show the template called test.
@@ -55,14 +58,14 @@ include tpl('parts/header.php');
                 After initial setup, Wedeto uses a development mode that shows you some background information. In this case, the template file is missing.
                 That's right, we didn't create it yet. Let's do that now:
 
-                <pre class="callout">
-                    mkdir template
-                    gedit template/test.php
+                <pre>
+mkdir template
+gedit template/test.php
                 </pre>
 
                 You can of course substitute your favorite editor for 'gedit'. Put in the following contents:
 
-                <pre class="callout">
+                <pre>
 &lt;?php
 $this-&gt;setTitle('WeDeTo - The Web Development Toolkit');
 include tpl('parts/header.php');
@@ -105,13 +108,13 @@ include tpl('parts/footer.php');
                 to prepare and execute queries. However, for most uses, the <abbr title="Data Access Object">DAO</abbr> class will be useful to
                 save you from writing the queries:
 
-                <pre class="callout">
-                    class User extends Wedeto\DB\DAO
-                    {
-                        protected static $table = "users";
-                    }
+                <pre>
+class User extends Wedeto\DB\DAO
+{
+    protected static $table = "users";
+}
 
-                    $my_user = User::get(['id' => 13]);
+$my_user = User::get(['id' => 13]);
                 </pre>
 
                 Easy, right? Just tell Wedeto what the name of your table is, and Wedeto will find out what your table looks like and generate the queries.
@@ -119,26 +122,30 @@ include tpl('parts/footer.php');
             <p>
                 If things get more complex, you can also use the Query classes to generate database agnostic queries:
 
-                <pre class="callout">
-                    use Wedeto\DB\Query\Builder as QB;
+                <pre>
+use Wedeto\DB\Query\Builder as QB;
 
-                    $select = QB::select(
-                        QB::from('users'),
-                        QB::where(
-                            QB::any('id', [3, 5, 7, 9]),
-                        ),
-                        QB::limit(3);
-                    );
-                    foreach ($select->execute($db) as $user)
-                    {
-                        // Do whatever you want
-                    }
+$select = QB::select(
+    QB::from('users'),
+    QB::where(
+        QB::any('id', [3, 5, 7, 9]),
+    ),
+    QB::limit(3);
+);
+foreach ($select->execute($db) as $user)
+{
+    // Do whatever you want
+}
                 </pre>
                 
                 The loop will loop over the retrieved users,
                 <code>$select->execute</code> will return a 
                 <a href="http://php.net/manual/en/class.pdostatement.php">PDOStatement</a>
                 that has been prepared and executed. You just need to fetch the results.
+            <p>
+                A common scenario in a template is that you want to list all objects, and show a message when there is none.
+                This structure is sometimes 
+            </p>
             </p>
             <h3>That's it!</h3>
             <p>
@@ -149,5 +156,5 @@ include tpl('parts/footer.php');
                 Besides testing the code thoroughly, it also gives a good idea of how to use the software.
             </p>
         </div>
-<?
-include tpl('parts/footer.php');
+<?php
+require tpl('parts/footer.php');
