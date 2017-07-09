@@ -29,11 +29,11 @@ use Wedeto\Application\Application;
 
 if ($arguments->count())
 {
-    $tpl = $resolver->resolve('template', $request->url);
+    $tpl = $resolver->resolve('template', $request->url->path);
     if ($tpl === null)
     {
         $i18n = Application::i18n();
-        $msg = td("The page {url} could not be found", "wedeto", ['url' => $request->url]);
+        $msg = td("The page {url} could not be found", "wedeto", ['url' => $request->url->path]);
         throw new HTTPError(404, $msg);
     }
     $template->setTemplate($tpl);
