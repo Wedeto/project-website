@@ -59,7 +59,7 @@ foreach ($select->execute($db) as $user)
                     </p>
                 </section>
                 <section id="fee" data-magellan-target="fee">
-                    <h2>Foreach/else</h>
+                    <h2>Foreach/else</h2>
                     <p>
                         A common scenario in a template is that you want to list all objects, and show a message when there is none.
                         This structure is sometimes referred to as foreach-else. Wedeto implements this in a function fee:
