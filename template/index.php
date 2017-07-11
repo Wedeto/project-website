@@ -1,11 +1,6 @@
 <?php
 $this->setTitle('WeDeTo - The Web Development Toolkit');
 include tpl('parts/header.php');
-$this->addJS('vendor/highlight.js/highlight');
-$this->addCSS('vendor/highlight.js/railscasts');
-$this->addCSS('wedeto');
-$this->addJS('wedeto');
-
 include tpl('parts/page_start.php');
 ?>
                 <h1>Welcome</h1/>

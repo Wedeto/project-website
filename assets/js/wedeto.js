@@ -1,3 +1,4 @@
+$(document).foundation();
 $(function () {
     $('pre').addClass('callout');
 

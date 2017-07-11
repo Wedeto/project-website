@@ -2,3 +2,13 @@ pre
 {
     overflow:   auto;
 }
+
+.vertical.menu li a.is-active
+{
+    color:      black;
+}
+
+.vertical.menu li a.is-active::before
+{
+    content:    "» ";
+}
