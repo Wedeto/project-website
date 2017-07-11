@@ -33,8 +33,12 @@ if ($arguments->count())
     if ($tpl === null)
     {
         $i18n = Application::i18n();
-        $msg = td("The page {url} could not be found", "wedeto", ['url' => $request->url->path]);
-        throw new HTTPError(404, $msg);
+        $msg = [
+            'msg' => "The page {url} could not be found", 
+            "domain" => "wedeto", 
+            "params" => ['url' => $request->url->path]
+        ];
+        throw new HTTPError(404, $request->url->path, $msg);
     }
     $template->setTemplate($tpl);
 }
