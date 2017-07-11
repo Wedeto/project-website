@@ -28,7 +28,7 @@ $current = $request->url->path;
             </div>
         </div>
         <div class="row">
-            <div class="title-bar" data-responsive-toggle="navigation-menu" data-hide-for="medium" style="padding-left: 1rem;">
+            <div class="title-bar" data-responsive-toggle="navigation-menu" data-hide-for="medium" style="padding-left: 1rem; display: none;">
                 <button class="menu-icon" type="button" data-toggle="navigation-menu">&nbsp;</button>
                 <div class="title-bar-title">Navigation</div>
             </div>
