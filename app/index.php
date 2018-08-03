@@ -27,6 +27,8 @@ use Wedeto\Template;
 use Wedeto\HTTP\Response\Error as HTTPError;
 use Wedeto\Application\Application;
 
+$template->addJS('vendor/ckeditor5-build-inline/ckeditor.js');
+
 if ($arguments->count())
 {
     $tpl = $resolver->resolve('template', $request->url->path);

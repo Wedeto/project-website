@@ -3,8 +3,8 @@ $this->setTitle('WeDeTo - The Web Development Toolkit');
 include tpl('parts/header.php');
 include tpl('parts/page_start');
 ?>
-                <h1>Database access</h1>
-                <p>
+                <h1 class="editor">Database access</h1>
+                <p class="editor">
                     Wedeto comes with a database layer that currently supports
                     MySQL and PostgreSQL (we strongly recommend PostgreSQL if you
                     have the choice).
@@ -13,21 +13,21 @@ include tpl('parts/page_start');
                     <code>$app->db</code> to obtain a database object. You can use this as a <a href="http://php.net/manual/en/book.pdo.php">PDO</a>
                     to prepare and execute queries. However, for most uses, the <abbr title="Data Access Object">DAO</abbr> class will be useful to
                     save you from writing the queries:
-
-                    <pre><code>&lt;?php
+                </p>
+                <pre><code>&lt;?php
 class User extends Wedeto\DB\DAO
 {
     protected static $table = "users";
 }
 
-$my_user = User::get(['id' => 13]);</code></pre>
-
+$my_user = User::get(['id' =&gt; 13]);</code></pre>
+                <p>
                     Easy, right? Just tell Wedeto what the name of your table is, and Wedeto will find out what your table looks like and generate the queries.
                 </p>
                 <p>
                     If things get more complex, you can also use the Query classes to generate database agnostic queries:
-
-                    <pre><code>&lt;?php
+                </p>
+                <pre><code>&lt;?php
 use Wedeto\DB\Query\Builder as QB;
 
 $select = QB::select(
@@ -41,6 +41,7 @@ foreach ($select->execute($db) as $user)
 {
     // Do whatever you want
 }</code></pre>
+                <p>
                     
                     The loop will loop over the retrieved users,
                     <code>$select->execute</code> will return a 
